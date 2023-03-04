@@ -11,6 +11,7 @@ interface RotaCircleCProps {
     holeRadius: number;
     slot: RotaSlot;
     rotaBoard: RotaBoard;
+    strokeColour: string;
     onClick: (slotId: SlotId) => void;
 }
 
@@ -19,6 +20,7 @@ export function RotaCircleC({
     holeRadius,
     slot,
     rotaBoard,
+    strokeColour,
     onClick,
 }: RotaCircleCProps): JSX.Element {
     const pos =
@@ -29,7 +31,7 @@ export function RotaCircleC({
             cx={pos.x + 50}
             cy={pos.y + 50}
             r={holeRadius * (isSlotSelected(slot, rotaBoard) ? 1.5 : 1)}
-            stroke={isSlotSelected(slot, rotaBoard) ? "white" : "black"}
+            stroke={isSlotSelected(slot, rotaBoard) ? "white" : strokeColour}
             fill={colourForSlotState(slot.state)}
             strokeWidth="1"
             onClick={() => onClick(slot.id)}

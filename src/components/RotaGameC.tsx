@@ -11,16 +11,17 @@ export function RotaGameC() {
         setRotaBoard(handleClickRotaSlot(slotId));
     }
 
-    const radius = 42;
+    const radius = 38;
     const holeRadius = 7;
 
+    const strokeColour = "#965";
     return (
         <div className="game">
             <h1>Rota / Terni Lapilli</h1>
             <WinStateC rotaBoard={rotaBoard} />
 
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <RotaBoardOutlinesC radius={radius} />
+                <RotaBoardOutlinesC radius={radius} colour={strokeColour} />
 
                 {rotaBoard.outer.map((slot, ix) => (
                     <RotaCircleC
@@ -28,6 +29,7 @@ export function RotaGameC() {
                         holeRadius={holeRadius}
                         slot={slot}
                         rotaBoard={rotaBoard}
+                        strokeColour={strokeColour}
                         onClick={handleClickOnSlot}
                     />
                 ))}
@@ -37,6 +39,7 @@ export function RotaGameC() {
                     holeRadius={holeRadius}
                     slot={rotaBoard.centre}
                     rotaBoard={rotaBoard}
+                    strokeColour={strokeColour}
                     onClick={handleClickOnSlot}
                 />
             </svg>

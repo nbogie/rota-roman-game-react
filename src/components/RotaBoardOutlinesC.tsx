@@ -3,9 +3,11 @@ import { calcPosition } from "./RotaCircleC";
 
 export interface RotaBoardOutlinesCProps {
     radius: number;
+    colour: string;
 }
 export function RotaBoardOutlinesC({
     radius,
+    colour,
 }: RotaBoardOutlinesCProps): JSX.Element {
     return (
         <>
@@ -13,7 +15,15 @@ export function RotaBoardOutlinesC({
                 cx="50"
                 cy="50"
                 r={radius}
-                stroke="black"
+                stroke={colour}
+                fill="none"
+                strokeWidth="1"
+            />
+            <circle
+                cx="50"
+                cy="50"
+                r={radius * 1.25}
+                stroke={colour}
                 fill="none"
                 strokeWidth="1"
             />
@@ -24,7 +34,7 @@ export function RotaBoardOutlinesC({
                     y1={calcPosition(ix1, radius).y + 50}
                     x2={calcPosition(ix2, radius).x + 50}
                     y2={calcPosition(ix2, radius).y + 50}
-                    stroke="black"
+                    stroke={colour}
                 />
             ))}
         </>
