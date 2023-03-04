@@ -6,7 +6,7 @@ import {
     SlotId,
 } from "../core/rotaGame";
 
-interface RotaCircleProps {
+interface RotaCircleCProps {
     radius: number;
     holeRadius: number;
     slot: RotaSlot;
@@ -14,13 +14,13 @@ interface RotaCircleProps {
     onClick: (slotId: SlotId) => void;
 }
 
-export function RotaCircle({
+export function RotaCircleC({
     radius,
     holeRadius,
     slot,
     rotaBoard,
     onClick,
-}: RotaCircleProps): JSX.Element {
+}: RotaCircleCProps): JSX.Element {
     const pos =
         slot.id === "centre" ? { x: 0, y: 0 } : calcPosition(slot.id, radius);
     return (

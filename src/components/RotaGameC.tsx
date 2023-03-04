@@ -1,8 +1,8 @@
 import { useImmer } from "use-immer";
 import { handleClickRotaSlot, makeEmptyBoard, SlotId } from "../core/rotaGame";
 import { RotaBoardOutlinesC } from "./RotaBoardOutlinesC";
-import { RotaCircle } from "./RotaCircle";
-import { WinState } from "./WinState";
+import { RotaCircleC } from "./RotaCircleC";
+import { WinStateC } from "./WinStateC";
 
 export function RotaGameC() {
     const [rotaBoard, setRotaBoard] = useImmer(makeEmptyBoard());
@@ -17,13 +17,13 @@ export function RotaGameC() {
     return (
         <div className="game">
             <h1>Rota / Terni Lapilli</h1>
-            <WinState rotaBoard={rotaBoard} />
+            <WinStateC rotaBoard={rotaBoard} />
 
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <RotaBoardOutlinesC radius={radius} rotaBoard={rotaBoard} />
+                <RotaBoardOutlinesC radius={radius} />
 
                 {rotaBoard.outer.map((slot, ix) => (
-                    <RotaCircle
+                    <RotaCircleC
                         radius={radius}
                         holeRadius={holeRadius}
                         slot={slot}
@@ -32,7 +32,7 @@ export function RotaGameC() {
                     />
                 ))}
                 {/* Centre circle */}
-                <RotaCircle
+                <RotaCircleC
                     radius={radius}
                     holeRadius={holeRadius}
                     slot={rotaBoard.centre}

@@ -1,6 +1,10 @@
 import { calcWinState, RotaBoard } from "../core/rotaGame";
 
-export function WinState({ rotaBoard }: { rotaBoard: RotaBoard }): JSX.Element {
+export function WinStateC({
+    rotaBoard,
+}: {
+    rotaBoard: RotaBoard;
+}): JSX.Element {
     const winState = calcWinState(rotaBoard);
     return (
         <h2>

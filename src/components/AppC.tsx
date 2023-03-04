@@ -1,9 +1,9 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
+import "./AppC.css";
 import { RotaGameC } from "./RotaGameC";
 
-function App() {
+function AppC() {
     return (
         <div className="App">
             <RotaGameC />
@@ -19,4 +19,4 @@ function App() {
     );
 }
 
-export default App;
+export default AppC;

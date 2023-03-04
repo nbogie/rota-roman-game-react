@@ -1,13 +1,11 @@
-import { RotaBoard, rotaOpposingSlotPairs } from "../core/rotaGame";
-import { calcPosition } from "./RotaCircle";
+import { rotaOpposingSlotPairs } from "../core/rotaGame";
+import { calcPosition } from "./RotaCircleC";
 
 export interface RotaBoardOutlinesCProps {
     radius: number;
-    rotaBoard: RotaBoard;
 }
 export function RotaBoardOutlinesC({
     radius,
-    rotaBoard,
 }: RotaBoardOutlinesCProps): JSX.Element {
     return (
         <>
