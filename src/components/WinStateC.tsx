@@ -1,4 +1,5 @@
-import { calcWinState, RotaBoard } from "../core/rotaGame";
+import { RotaBoard } from "../core/rotaGame";
+import { calcWinState } from "../core/calcWinState";
 
 export function WinStateC({
     rotaBoard,
