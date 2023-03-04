@@ -7,5 +7,4 @@ body {
 
 .game {
     width: calc(min(90vw, 90vh));
-
 }
