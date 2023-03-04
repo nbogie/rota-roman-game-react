@@ -1,5 +1,5 @@
 export interface RotaBoard {
-    nextPlayer: PlayerMarker;
+    currentPlayer: PlayerMarker;
     outer: RotaSlot[];
     centre: RotaSlot;
     selectedSlot: RotaSlot | null;
@@ -21,7 +21,7 @@ export function makeEmptyBoard(): RotaBoard {
         outer.push(slot);
     }
     const centre: RotaSlot = { state: "empty", id: "centre" };
-    return { outer, centre, nextPlayer: "p1", selectedSlot: null };
+    return { outer, centre, currentPlayer: "p1", selectedSlot: null };
 }
 
 export function pick<T>(arr: T[]): T {
@@ -32,8 +32,8 @@ export function allPieces(rotaBoard: RotaBoard): RotaSlot[] {
     return [...rotaBoard.outer, rotaBoard.centre];
 }
 
-export function calcNextPlayer(rotaBoard: RotaBoard): PlayerMarker {
-    return rotaBoard.nextPlayer;
+export function currentPlayer(rotaBoard: RotaBoard): PlayerMarker {
+    return rotaBoard.currentPlayer;
 }
 
 export function getSlotById(slotId: SlotId, board: RotaBoard): RotaSlot {
@@ -45,16 +45,18 @@ export function getSlotById(slotId: SlotId, board: RotaBoard): RotaSlot {
 }
 
 export function togglePlayerTurn(rotaBoard: RotaBoard): void {
-    rotaBoard.nextPlayer = rotaBoard.nextPlayer === "p1" ? "p2" : "p1";
+    rotaBoard.currentPlayer = rotaBoard.currentPlayer === "p1" ? "p2" : "p1";
 }
 
 export function handleClickRotaSlot(slotId: SlotId) {
     return (draft: RotaBoard) => {
-        const nextPlayer = calcNextPlayer(draft);
+        const currentP = currentPlayer(draft);
         const slot = getSlotById(slotId, draft);
         if (slot.state === "empty") {
-            slot.state = nextPlayer;
+            slot.state = currentP;
             togglePlayerTurn(draft);
+        } else if (slot.state === currentP) {
+            draft.selectedSlot = slot;
         }
     };
 }
@@ -68,4 +70,8 @@ export function piecesOf(
     board: RotaBoard
 ): RotaSlot[] {
     return allPieces(board).filter((p) => p.state === playerMarker);
+}
+
+export function isSlotSelected(slot: RotaSlot, rotaBoard: RotaBoard): boolean {
+    return rotaBoard.selectedSlot?.id === slot.id;
 }

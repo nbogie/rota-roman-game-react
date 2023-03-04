@@ -2,7 +2,10 @@ import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
 import {
     handleClickRotaSlot,
+    isSlotSelected,
     makeEmptyBoard,
+    RotaBoard,
+    RotaSlot,
     RotaSlotState,
     SlotId,
 } from "../core/rotaGame";
@@ -25,6 +28,7 @@ export function RotaGameC() {
     const radius = 45;
     const holeRadius = 2;
     type SlotColour = "beige" | "red" | "blue";
+
     function colourForSlotState(state: RotaSlotState): SlotColour {
         const lookup: Record<RotaSlotState, SlotColour> = {
             empty: "beige",
@@ -60,8 +64,13 @@ export function RotaGameC() {
                         key={ix}
                         cx={calcPosition(ix, radius).x + 50}
                         cy={calcPosition(ix, radius).y + 50}
-                        r={holeRadius}
-                        stroke="black"
+                        r={
+                            holeRadius *
+                            (isSlotSelected(slot, rotaBoard) ? 1.5 : 1)
+                        }
+                        stroke={
+                            isSlotSelected(slot, rotaBoard) ? "white" : "black"
+                        }
                         fill={colourForSlotState(slot.state)}
                         strokeWidth="1"
                         onClick={() => handleClickOnSlot(ix as SlotId)}
