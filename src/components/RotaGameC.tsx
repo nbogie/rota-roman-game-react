@@ -1,11 +1,6 @@
 import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
-import {
-    calcWinState,
-    handleClickRotaSlot,
-    makeEmptyBoard,
-    SlotId,
-} from "../core/rotaGame";
+import { handleClickRotaSlot, makeEmptyBoard, SlotId } from "../core/rotaGame";
 import { RotaBoardOutlinesC } from "./RotaBoardOutlinesC";
 import { RotaCircle } from "./RotaCircle";
 import { WinState } from "./WinState";
