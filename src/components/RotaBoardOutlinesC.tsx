@@ -1,4 +1,4 @@
-import { RotaBoard } from "../core/rotaGame";
+import { RotaBoard, rotaOpposingSlotPairs } from "../core/rotaGame";
 import { calcPosition } from "./RotaGameC";
 
 export interface RotaBoardOutlinesCProps {
@@ -9,13 +9,6 @@ export function RotaBoardOutlinesC({
     radius,
     rotaBoard,
 }: RotaBoardOutlinesCProps): JSX.Element {
-    const slotPairs = [
-        [0, 4],
-        [1, 5],
-        [2, 6],
-        [3, 7],
-    ];
-
     return (
         <>
             <circle
@@ -26,7 +19,7 @@ export function RotaBoardOutlinesC({
                 fill="none"
                 strokeWidth="1"
             />
-            {slotPairs.map(([ix1, ix2], keyIx) => (
+            {rotaOpposingSlotPairs.map(([ix1, ix2], keyIx) => (
                 <line
                     key={keyIx}
                     x1={calcPosition(ix1, radius).x + 50}
