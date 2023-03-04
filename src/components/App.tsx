@@ -48,16 +48,16 @@ function calcPosition(ix: number, radius: number): Position {
     return { x: radius * Math.cos(angle), y: radius * Math.sin(angle) };
 }
 function RotaGame() {
-    const angles = [0, 1, 2, 3, 4, 5, 6, 7].map((v) => (v * Math.PI) / 4);
-    const radius = 45;
     const rotaBoard: RotaBoard = makeRandomBoard();
 
-    const pairs = [
+    const slotPairs = [
         [0, 4],
         [1, 5],
         [2, 6],
         [3, 7],
     ];
+
+    const radius = 45;
     const holeRadius = 2;
     type SlotColour = "none" | "red" | "blue";
     function colourForSlotState(state: RotaSlotState): SlotColour {
@@ -66,7 +66,6 @@ function RotaGame() {
             p1: "red",
             p2: "blue",
         };
-
         return lookup[state];
     }
 
@@ -81,7 +80,7 @@ function RotaGame() {
                     fill="none"
                     stroke-width="1"
                 />
-                {pairs.map(([ix1, ix2]) => (
+                {slotPairs.map(([ix1, ix2]) => (
                     <line
                         x1={calcPosition(ix1, radius).x + 50}
                         y1={calcPosition(ix1, radius).y + 50}
@@ -107,20 +106,11 @@ function RotaGame() {
                     cy={50}
                     r={holeRadius}
                     stroke="black"
-                    fill="black"
+                    fill={colourForSlotState(rotaBoard.centre.state)}
                     stroke-width="1"
                     onClick={() => console.log("clicked centre")}
                 />
             </svg>
         </div>
     );
-}
-function makeOpposingPairs(
-    positions: { x: number; y: number }[]
-): [Position, Position][] {
-    const pairs: [Position, Position][] = [];
-    for (let i = 0; i < 4; i++) {
-        pairs.push([positions[i], positions[i + 4]]);
-    }
-    return pairs;
 }
