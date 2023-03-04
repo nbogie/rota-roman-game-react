@@ -37,13 +37,13 @@ export function RotaCircleC({
     );
 }
 
-export type SlotColour = "beige" | "red" | "blue";
+export type SlotColour = "beige" | "tomato" | "steelblue";
 
 export function colourForSlotState(state: RotaSlotState): SlotColour {
     const lookup: Record<RotaSlotState, SlotColour> = {
         empty: "beige",
-        p1: "red",
-        p2: "blue",
+        p1: "tomato",
+        p2: "steelblue",
     };
     return lookup[state];
 }
