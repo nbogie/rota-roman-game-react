@@ -98,3 +98,15 @@ function moveFromTo(id1: SlotId, id2: SlotId, board: RotaBoard) {
     toSlot.state = fromSlot.state;
     fromSlot.state = "empty";
 }
+
+//no ties are possible, unlike tictactoe
+export type WinState =
+    | { state: "unfinished" }
+    | { state: "won"; winner: PlayerMarker };
+
+export function calcWinState(rotaBoard: RotaBoard): WinState {
+    return pick([
+        { state: "unfinished" },
+        { state: "won", winner: pick(["p1", "p2"]) },
+    ]);
+}

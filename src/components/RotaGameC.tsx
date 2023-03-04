@@ -1,8 +1,14 @@
 import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
-import { handleClickRotaSlot, makeEmptyBoard, SlotId } from "../core/rotaGame";
+import {
+    calcWinState,
+    handleClickRotaSlot,
+    makeEmptyBoard,
+    SlotId,
+} from "../core/rotaGame";
 import { RotaBoardOutlinesC } from "./RotaBoardOutlinesC";
 import { RotaCircle } from "./RotaCircle";
+import { WinState } from "./WinState";
 
 export function RotaGameC() {
     const [rotaBoard, setRotaBoard] = useImmer(makeEmptyBoard());
@@ -18,7 +24,8 @@ export function RotaGameC() {
     return (
         <div className="game">
             <h1>Rota / Terni Lapilli</h1>
-            <h2>To play: {rotaBoard.currentPlayer}</h2>
+            <WinState rotaBoard={rotaBoard} />
+
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <RotaBoardOutlinesC radius={radius} rotaBoard={rotaBoard} />
 
