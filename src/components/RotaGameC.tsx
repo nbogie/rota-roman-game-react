@@ -21,7 +21,11 @@ export function RotaGameC() {
             <WinStateC rotaBoard={rotaBoard} />
 
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <RotaBoardOutlinesC radius={radius} colour={strokeColour} />
+                <RotaBoardOutlinesC
+                    radius={radius}
+                    colour={strokeColour}
+                    strokeWidth={0.4}
+                />
 
                 {rotaBoard.outer.map((slot, ix) => (
                     <RotaCircleC
@@ -30,6 +34,7 @@ export function RotaGameC() {
                         slot={slot}
                         rotaBoard={rotaBoard}
                         strokeColour={strokeColour}
+                        strokeWidth={0.4}
                         onClick={handleClickOnSlot}
                     />
                 ))}
@@ -40,6 +45,7 @@ export function RotaGameC() {
                     slot={rotaBoard.centre}
                     rotaBoard={rotaBoard}
                     strokeColour={strokeColour}
+                    strokeWidth={0.4}
                     onClick={handleClickOnSlot}
                 />
             </svg>
