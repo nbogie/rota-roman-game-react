@@ -12,7 +12,8 @@ export function RotaGameC() {
         setRotaBoard(handleClickRotaSlot(slotId));
     }
 
-    const radius = 45;
+    const radius = 42;
+    const holeRadius = 7;
 
     return (
         <div className="game">
@@ -24,7 +25,7 @@ export function RotaGameC() {
                 {rotaBoard.outer.map((slot, ix) => (
                     <RotaCircle
                         radius={radius}
-                        holeRadius={3}
+                        holeRadius={holeRadius}
                         slot={slot}
                         rotaBoard={rotaBoard}
                         onClick={handleClickOnSlot}
@@ -33,7 +34,7 @@ export function RotaGameC() {
                 {/* Centre circle */}
                 <RotaCircle
                     radius={radius}
-                    holeRadius={3}
+                    holeRadius={holeRadius}
                     slot={rotaBoard.centre}
                     rotaBoard={rotaBoard}
                     onClick={handleClickOnSlot}
