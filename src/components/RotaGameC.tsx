@@ -1,14 +1,8 @@
 import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
-import {
-    handleClickRotaSlot,
-    isSlotSelected,
-    makeEmptyBoard,
-    RotaBoard,
-    RotaSlot,
-    RotaSlotState,
-    SlotId,
-} from "../core/rotaGame";
+import { handleClickRotaSlot, makeEmptyBoard, SlotId } from "../core/rotaGame";
+import { RotaBoardOutlinesC } from "./RotaBoardOutlinesC";
+import { RotaCircle } from "./RotaCircle";
 
 export function RotaGameC() {
     const [rotaBoard, setRotaBoard] = useImmer(makeEmptyBoard());
@@ -18,72 +12,31 @@ export function RotaGameC() {
         setRotaBoard(handleClickRotaSlot(slotId));
     }
 
-    const slotPairs = [
-        [0, 4],
-        [1, 5],
-        [2, 6],
-        [3, 7],
-    ];
-
     const radius = 45;
-    const holeRadius = 2;
-    type SlotColour = "beige" | "red" | "blue";
-
-    function colourForSlotState(state: RotaSlotState): SlotColour {
-        const lookup: Record<RotaSlotState, SlotColour> = {
-            empty: "beige",
-            p1: "red",
-            p2: "blue",
-        };
-        return lookup[state];
-    }
 
     return (
         <div className="game">
+            <h1>Rota / Terni Lapilli</h1>
+            <h2>To play: {rotaBoard.currentPlayer}</h2>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle
-                    cx="50"
-                    cy="50"
-                    r={radius}
-                    stroke="black"
-                    fill="none"
-                    strokeWidth="1"
-                />
-                {slotPairs.map(([ix1, ix2], keyIx) => (
-                    <line
-                        key={keyIx}
-                        x1={calcPosition(ix1, radius).x + 50}
-                        y1={calcPosition(ix1, radius).y + 50}
-                        x2={calcPosition(ix2, radius).x + 50}
-                        y2={calcPosition(ix2, radius).y + 50}
-                        stroke="black"
-                    />
-                ))}
+                <RotaBoardOutlinesC radius={radius} rotaBoard={rotaBoard} />
+
                 {rotaBoard.outer.map((slot, ix) => (
-                    <circle
-                        key={ix}
-                        cx={calcPosition(ix, radius).x + 50}
-                        cy={calcPosition(ix, radius).y + 50}
-                        r={
-                            holeRadius *
-                            (isSlotSelected(slot, rotaBoard) ? 1.5 : 1)
-                        }
-                        stroke={
-                            isSlotSelected(slot, rotaBoard) ? "white" : "black"
-                        }
-                        fill={colourForSlotState(slot.state)}
-                        strokeWidth="1"
-                        onClick={() => handleClickOnSlot(ix as SlotId)}
+                    <RotaCircle
+                        radius={radius}
+                        holeRadius={3}
+                        slot={slot}
+                        rotaBoard={rotaBoard}
+                        onClick={handleClickOnSlot}
                     />
                 ))}
-                <circle
-                    cx={50}
-                    cy={50}
-                    r={holeRadius}
-                    stroke="black"
-                    fill={colourForSlotState(rotaBoard.centre.state)}
-                    strokeWidth="1"
-                    onClick={() => handleClickOnSlot("centre")}
+                {/* Centre circle */}
+                <RotaCircle
+                    radius={radius}
+                    holeRadius={3}
+                    slot={rotaBoard.centre}
+                    rotaBoard={rotaBoard}
+                    onClick={handleClickOnSlot}
                 />
             </svg>
         </div>
