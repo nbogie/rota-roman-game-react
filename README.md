@@ -1,5 +1,9 @@
 # Rota / Terni Lapilli
 
+## TODO:
+
+Only permit legal stone moves. (no jumping other stones, no moving more than one space, no landing on an occupied space, etc)
+
 ## Rules
 
 https://www.getty.edu/education/college/ancient_rome_at_home/pdf/rota_game.pdf
