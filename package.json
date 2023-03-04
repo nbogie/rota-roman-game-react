@@ -14,8 +14,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "immer": "^9.0.19",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-toastify": "^9.1.1",
+    "use-immer": "^0.8.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
