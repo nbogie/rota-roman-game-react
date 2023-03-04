@@ -1,4 +1,10 @@
-# React app (Vite)
+# Rota / Terni Lapilli
+
+## Rules
+
+https://www.getty.edu/education/college/ancient_rome_at_home/pdf/rota_game.pdf
+
+# Notes from Academy Vite React TS starter app
 
 ## Vite learning notes
 
