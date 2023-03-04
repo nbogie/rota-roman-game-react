@@ -46,17 +46,35 @@ export function getSlotById(slotId: SlotId, board: RotaBoard): RotaSlot {
 
 export function togglePlayerTurn(rotaBoard: RotaBoard): void {
     rotaBoard.currentPlayer = rotaBoard.currentPlayer === "p1" ? "p2" : "p1";
+    rotaBoard.selectedSlot = null;
 }
 
 export function handleClickRotaSlot(slotId: SlotId) {
     return (draft: RotaBoard) => {
         const currentP = currentPlayer(draft);
         const slot = getSlotById(slotId, draft);
-        if (slot.state === "empty") {
-            slot.state = currentP;
-            togglePlayerTurn(draft);
-        } else if (slot.state === currentP) {
-            draft.selectedSlot = slot;
+
+        //first three moves are always to be placements not moves
+        if (countOf(currentP, draft) < 3) {
+            if (slot.state === "empty") {
+                slot.state = currentP;
+                togglePlayerTurn(draft);
+            }
+            //else, it's a later move
+        } else {
+            if (slot.state === "empty") {
+                if (draft.selectedSlot?.state === currentP) {
+                    //TODO: check we are allowed to move from-to
+                    moveFromTo(draft.selectedSlot.id, slot.id, draft);
+                    draft.selectedSlot = null;
+                    togglePlayerTurn(draft);
+                }
+                //else it's not an empty cell
+            } else {
+                if (slot.state === currentP) {
+                    draft.selectedSlot = slot;
+                }
+            }
         }
     };
 }
@@ -74,4 +92,9 @@ export function piecesOf(
 
 export function isSlotSelected(slot: RotaSlot, rotaBoard: RotaBoard): boolean {
     return rotaBoard.selectedSlot?.id === slot.id;
+}
+function moveFromTo(id1: SlotId, id2: SlotId, board: RotaBoard) {
+    const [fromSlot, toSlot] = [id1, id2].map((id) => getSlotById(id, board));
+    toSlot.state = fromSlot.state;
+    fromSlot.state = "empty";
 }
