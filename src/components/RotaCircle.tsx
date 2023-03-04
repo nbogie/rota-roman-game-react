@@ -5,7 +5,6 @@ import {
     RotaSlotState,
     SlotId,
 } from "../core/rotaGame";
-import { calcPosition } from "./RotaGameC";
 
 interface RotaCircleProps {
     radius: number;
@@ -14,6 +13,7 @@ interface RotaCircleProps {
     rotaBoard: RotaBoard;
     onClick: (slotId: SlotId) => void;
 }
+
 export function RotaCircle({
     radius,
     holeRadius,
@@ -46,4 +46,14 @@ export function colourForSlotState(state: RotaSlotState): SlotColour {
         p2: "blue",
     };
     return lookup[state];
+}
+
+export interface Position {
+    x: number;
+    y: number;
+}
+
+export function calcPosition(ix: number, radius: number): Position {
+    const angle = (ix * Math.PI) / 4;
+    return { x: radius * Math.cos(angle), y: radius * Math.sin(angle) };
 }

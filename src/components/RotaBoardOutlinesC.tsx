@@ -1,5 +1,5 @@
 import { RotaBoard, rotaOpposingSlotPairs } from "../core/rotaGame";
-import { calcPosition } from "./RotaGameC";
+import { calcPosition } from "./RotaCircle";
 
 export interface RotaBoardOutlinesCProps {
     radius: number;

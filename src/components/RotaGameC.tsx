@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { useImmer } from "use-immer";
 import { handleClickRotaSlot, makeEmptyBoard, SlotId } from "../core/rotaGame";
 import { RotaBoardOutlinesC } from "./RotaBoardOutlinesC";
@@ -9,7 +8,6 @@ export function RotaGameC() {
     const [rotaBoard, setRotaBoard] = useImmer(makeEmptyBoard());
 
     function handleClickOnSlot(slotId: SlotId): void {
-        toast("clicked slot: " + slotId);
         setRotaBoard(handleClickRotaSlot(slotId));
     }
 
@@ -44,13 +42,4 @@ export function RotaGameC() {
             </svg>
         </div>
     );
-}
-export interface Position {
-    x: number;
-    y: number;
-}
-
-export function calcPosition(ix: number, radius: number): Position {
-    const angle = (ix * Math.PI) / 4;
-    return { x: radius * Math.cos(angle), y: radius * Math.sin(angle) };
 }
