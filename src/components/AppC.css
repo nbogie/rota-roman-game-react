@@ -3,8 +3,21 @@ body {
     margin: 0 auto;
     display: grid;
     place-items: center;
+    height: 100vh;
+}
+
+#root,
+.App,
+.game {
+    height: 100%;
 }
 
 .game {
-    width: calc(min(90vw, 90vh));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gameBoard {
+    width: calc(min(500px, 80vw, 80vh));
 }

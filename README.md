@@ -2,7 +2,7 @@
 
 ## TODO:
 
-Only permit legal stone moves. (no jumping other stones, no moving more than one space, no landing on an occupied space, etc)
+-   Only permit legal stone moves. (no jumping other stones, no moving more than one space, no landing on an occupied space, etc)
 
 ## Rules
 

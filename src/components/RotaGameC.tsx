@@ -20,7 +20,11 @@ export function RotaGameC() {
             <h1>Rota / Terni Lapilli</h1>
             <WinStateC rotaBoard={rotaBoard} />
 
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg
+                className="gameBoard"
+                viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg"
+            >
                 <RotaBoardOutlinesC
                     radius={radius}
                     colour={strokeColour}
